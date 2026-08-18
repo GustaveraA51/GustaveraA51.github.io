@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gustavo — Rumo a QA</title>
+<meta name="description" content="Portfólio de Gustavo — em transição de 8 anos na Marinha do Brasil para Quality Assurance, estudando JavaScript e Suporte de TI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1420;
+    --panel:#101f30;
+    --line:#25405a;
+    --line-soft:#182b3d;
+    --brass:#c9a15c;
+    --brass-dim:#8a7248;
+    --sonar:#4fd8b8;
+    --sonar-soft:rgba(79,216,184,.14);
+    --ink:#eae3d3;
+    --ink-dim:#93a7b6;
+    --ink-faint:#5d7181;
+    --radius-sm:4px;
+    --radius-md:10px;
+    --font-display:'Fraunces',serif;
+    --font-body:'Manrope',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+    --maxw:1080px;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:.4;
+    pointer-events:none;
+    z-index:0;
+    -webkit-mask-image:radial-gradient(ellipse 80% 55% at 50% 0%, #000 35%, transparent 88%);
+    mask-image:radial-gradient(ellipse 80% 55% at 50% 0%, #000 35%, transparent 88%);
+  }
+  main{ position:relative; z-index:1; }
+  a{ color:inherit; }
+  button{ font:inherit; }
+  ::selection{ background:var(--sonar-soft); color:var(--ink); }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--sonar);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1rem clamp(1.25rem,4vw,3rem);
+    background:rgba(10,20,32,.75);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{
+    display:flex; align-items:center; gap:.6rem;
+    font-family:var(--font-mono); font-size:.95rem; letter-spacing:.06em;
+    text-decoration:none; color:var(--ink);
+  }
+  .brand svg{ color:var(--brass); }
+  .nav-links{ display:flex; gap:clamp(1rem,2vw,2rem); list-style:none; margin:0; padding:0; }
+  .nav-link{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--ink-dim); text-decoration:none; padding-bottom:.3rem;
+    border-bottom:1px solid transparent; transition:color .2s ease, border-color .2s ease;
+  }
+  .nav-link:hover, .nav-link.active{ color:var(--sonar); border-color:var(--sonar); }
+  @media (max-width:640px){ .nav-links{ display:none; } }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.85rem 1.5rem; border-radius:var(--radius-sm);
+    font-family:var(--font-mono); font-size:.85rem; letter-spacing:.03em;
+    text-decoration:none; cursor:pointer; border:1px solid transparent;
+    transition:transform .15s ease, background .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--sonar); color:#06231c; border-color:var(--sonar); font-weight:600; }
+  .btn-primary:hover{ background:#6fe9cd; }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+  .btn-ghost:hover{ border-color:var(--brass); color:var(--brass); }
+  .btn:disabled{ opacity:.55; cursor:not-allowed; transform:none; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; min-height:88vh; display:flex; flex-direction:column; justify-content:center;
+    padding:clamp(2rem,6vw,4rem) clamp(1.25rem,4vw,3rem); overflow:hidden;
+  }
+  .hero-sweep{
+    position:absolute; top:50%; left:50%; width:140vmax; height:140vmax;
+    transform:translate(-50%,-50%);
+    background:conic-gradient(from 0deg, transparent 0deg, var(--sonar-soft) 6deg, transparent 34deg, transparent 360deg);
+    animation:sweep 16s linear infinite; pointer-events:none; z-index:0;
+  }
+  @keyframes sweep{ to{ transform:translate(-50%,-50%) rotate(360deg); } }
+  .hero-content{ position:relative; z-index:1; max-width:var(--maxw); margin:0 auto; width:100%; }
+  .bearing{
+    display:inline-flex; align-items:center; gap:.5rem;
+    font-family:var(--font-mono); font-size:.8rem; letter-spacing:.1em;
+    color:var(--brass); text-transform:uppercase; margin-bottom:1.5rem;
+  }
+  .hero h1{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(2.75rem,9vw,5.5rem);
+    line-height:1.02; margin:0 0 1rem;
+  }
+  .hero .role{ font-family:var(--font-mono); font-size:clamp(1rem,2.4vw,1.35rem); color:var(--sonar); min-height:1.6em; }
+  .hero .role::after{
+    content:''; display:inline-block; width:.5em; height:1.05em; background:var(--sonar);
+    margin-left:.15em; vertical-align:-.15em; animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero p.lede{ max-width:52ch; color:var(--ink-dim); font-size:1.05rem; margin:1.5rem 0 2.25rem; }
+  .hero-ctas{ display:flex; gap:1rem; flex-wrap:wrap; }
+
+  /* ---------- Sections ---------- */
+  .section{ padding:clamp(4rem,10vw,7rem) clamp(1.25rem,4vw,3rem); border-top:1px solid var(--line-soft); }
+  .section-inner{ max-width:var(--maxw); margin:0 auto; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:.8rem; letter-spacing:.12em; color:var(--brass);
+    text-transform:uppercase; margin-bottom:.75rem;
+  }
+  .section h2{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(1.75rem,4vw,2.75rem);
+    margin:0 0 2.5rem; max-width:22ch;
+  }
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .hero-sweep{ animation:none !important; }
+    .hero .role::after{ animation:none !important; }
+  }
+
+  /* ---------- Diário de bordo ---------- */
+  .log-list{ list-style:none; margin:0; padding:0; border-left:1px solid var(--line); }
+  .log-entry{ position:relative; padding:0 0 2.5rem 2rem; }
+  .log-entry:last-child{ padding-bottom:0; }
+  .log-entry::before{
+    content:''; position:absolute; left:-5px; top:.4rem; width:9px; height:9px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--sonar);
+  }
+  .log-label{
+    font-family:var(--font-mono); font-size:.75rem; letter-spacing:.08em; color:var(--brass);
+    text-transform:uppercase; margin-bottom:.35rem;
+  }
+  .log-entry h3{ font-family:var(--font-display); font-size:1.3rem; font-weight:600; margin:.1rem 0 .5rem; }
+  .log-entry p{ color:var(--ink-dim); margin:0; max-width:56ch; }
+
+  /* ---------- Equipamento ---------- */
+  .gear-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:1rem; }
+  .gear-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-md);
+    padding:1.1rem 1.2rem; transition:transform .18s ease, border-color .18s ease;
+  }
+  .gear-card:hover{ transform:translateY(-4px); border-color:var(--sonar); }
+  .gear-card .name{ font-family:var(--font-mono); font-weight:500; font-size:.95rem; }
+  .gear-card .cat{ font-size:.75rem; color:var(--ink-faint); margin-top:.3rem; }
+
+  /* ---------- Console de verificação ---------- */
+  .console-panel{
+    background:var(--panel); border:1px solid var(--brass-dim); border-radius:var(--radius-md);
+    padding:clamp(1.25rem,3vw,2rem);
+    box-shadow:0 20px 60px -25px rgba(0,0,0,.6);
+  }
+  .console-header{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+    margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px dashed var(--line);
+  }
+  .console-header span{ font-family:var(--font-mono); font-size:.8rem; color:var(--ink-faint); }
+  .console-output{ font-family:var(--font-mono); font-size:.88rem; min-height:8.5rem; display:flex; flex-direction:column; gap:.45rem; }
+  .console-output .line{ margin:0; }
+  .console-output .line.muted{ color:var(--ink-faint); }
+  .console-output .line.pass{ color:var(--sonar); }
+  .console-output .line.pass::before{ content:'✓ '; }
+  .console-output .line.result{ color:var(--ink); font-weight:600; }
+  .stamp{
+    display:inline-flex; margin-top:1.5rem; padding:.6rem 1.2rem; border:2px solid var(--sonar);
+    color:var(--sonar); font-family:var(--font-mono); font-weight:700; letter-spacing:.08em;
+    border-radius:var(--radius-sm); transform:rotate(-4deg) scale(.85); opacity:0;
+    transition:opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .stamp.show{ opacity:1; transform:rotate(-4deg) scale(1); }
+
+  /* ---------- Projeto ---------- */
+  .project-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-md);
+    padding:clamp(1.5rem,3vw,2.5rem); display:flex; flex-wrap:wrap; justify-content:space-between;
+    align-items:flex-end; gap:1.5rem;
+  }
+  .project-tag{ font-family:var(--font-mono); font-size:.75rem; color:var(--brass); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem; }
+  .project-card h3{ font-family:var(--font-display); font-size:1.6rem; margin:0 0 .6rem; }
+  .project-card p{ color:var(--ink-dim); max-width:48ch; margin:0; }
+
+  /* ---------- Fora do console ---------- */
+  .offduty{ padding:clamp(2rem,5vw,3rem) clamp(1.25rem,4vw,3rem); text-align:center; }
+  .offduty p{ font-family:var(--font-mono); font-size:.85rem; color:var(--ink-faint); max-width:50ch; margin:0 auto; }
+
+  /* ---------- Contato ---------- */
+  .contact-links{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:.5rem; }
+  footer{ padding:2.5rem clamp(1.25rem,4vw,3rem); text-align:center; border-top:1px solid var(--line-soft); }
+  footer p{ font-family:var(--font-mono); font-size:.8rem; color:var(--ink-faint); margin:0; }
+
+  @media (max-width:640px){
+    .project-card{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="#inicio" class="brand">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 4.5 L13.6 12 L12 19.5 L10.4 12 Z" fill="currentColor"/></svg>
+    GUSTAVO
+  </a>
+  <ul class="nav-links">
+    <li><a class="nav-link" href="#sobre">Sobre</a></li>
+    <li><a class="nav-link" href="#equipamento">Equipamento</a></li>
+    <li><a class="nav-link" href="#verificacao">Verificação</a></li>
+    <li><a class="nav-link" href="#projeto">Projeto</a></li>
+    <li><a class="nav-link" href="#contato">Contato</a></li>
+  </ul>
+</header>
+
+<main>
+
+  <section id="inicio" class="hero">
+    <div class="hero-sweep" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="bearing">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M12 4.5 L13.6 12 L12 19.5 L10.4 12 Z" fill="currentColor"/></svg>
+        RUMO: MARINHA → QA
+      </span>
+      <h1>Gustavo</h1>
+      <p class="role"><span id="typed-role"></span></p>
+      <p class="lede">Depois de 8 anos garantindo que tudo funcionasse a bordo, agora aplico a mesma disciplina para garantir que o software funcione — linha por linha.</p>
+      <div class="hero-ctas">
+        <a href="#verificacao" class="btn btn-primary">▶ Ver verificação</a>
+        <a href="https://github.com/GustaveraA51" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="section">
+    <div class="section-inner reveal">
+      <p class="eyebrow">01 — Diário de bordo</p>
+      <h2>Uma mudança de rumo</h2>
+      <ul class="log-list">
+        <li class="log-entry">
+          <p class="log-label">8 anos</p>
+          <h3>Marinha do Brasil</h3>
+          <p>Área administrativa, sustentando operações com disciplina, organização e atenção ao detalhe.</p>
+        </li>
+        <li class="log-entry">
+          <p class="log-label">Certificação</p>
+          <h3>Agente Marítimo</h3>
+          <p>Formação especializada em operações e documentação marítima.</p>
+        </li>
+        <li class="log-entry">
+          <p class="log-label">Em curso</p>
+          <h3>Suporte de TI · Google / Coursera</h3>
+          <p>Fundamentos de redes, sistemas e ferramentas de navegador — a base técnica para a próxima fase.</p>
+        </li>
+        <li class="log-entry">
+          <p class="log-label">Próximo rumo</p>
+          <h3>Quality Assurance</h3>
+          <p>Estudando JavaScript e testes de API para migrar para QA.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="equipamento" class="section">
+    <div class="section-inner reveal">
+      <p class="eyebrow">02 — Equipamento</p>
+      <h2>Ferramentas em uso</h2>
+      <div class="gear-grid">
+        <div class="gear-card"><div class="name">JavaScript</div><div class="cat">linguagem</div></div>
+        <div class="gear-card"><div class="name">HTML</div><div class="cat">linguagem</div></div>
+        <div class="gear-card"><div class="name">CSS</div><div class="cat">linguagem</div></div>
+        <div class="gear-card"><div class="name">Git</div><div class="cat">versionamento</div></div>
+        <div class="gear-card"><div class="name">GitHub</div><div class="cat">versionamento</div></div>
+        <div class="gear-card"><div class="name">Postman</div><div class="cat">testes de API</div></div>
+        <div class="gear-card"><div class="name">VS Code</div><div class="cat">editor</div></div>
+        <div class="gear-card"><div class="name">Excel</div><div class="cat">produtividade</div></div>
+        <div class="gear-card"><div class="name">IA aplicada</div><div class="cat">produtividade</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="verificacao" class="section">
+    <div class="section-inner reveal">
+      <p class="eyebrow">03 — Verificação de sistema</p>
+      <h2>Pronto para produção?</h2>
+      <div class="console-panel">
+        <div class="console-header">
+          <span>verificacao.log</span>
+          <button id="run-check" class="btn btn-primary" type="button">▶ Executar verificação</button>
+        </div>
+        <div id="console-output" class="console-output"></div>
+        <div id="stamp" class="stamp">APROVADO ✓</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projeto" class="section">
+    <div class="section-inner reveal">
+      <p class="eyebrow">04 — Projeto em destaque</p>
+      <h2>Da teoria à prática</h2>
+      <div class="project-card">
+        <div>
+          <p class="project-tag">JavaScript · repositório público</p>
+          <h3>Extens-o-para-Navegador</h3>
+          <p>Extensão de navegador gratuita, construída em JavaScript.</p>
+        </div>
+        <a href="https://github.com/GustaveraA51/Extens-o-para-Navegador" target="_blank" rel="noopener" class="btn btn-ghost">Ver no GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="offduty reveal">
+    <p>Fora do console, também administro uma comunidade online e cuido de toda a identidade visual dela — organização e criatividade lado a lado.</p>
+  </div>
+
+  <section id="contato" class="section">
+    <div class="section-inner reveal">
+      <p class="eyebrow">05 — Canais de contato</p>
+      <h2>Vamos conversar</h2>
+      <div class="contact-links">
+        <a href="https://github.com/GustaveraA51" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+        <a href="#" class="btn btn-ghost">[seu LinkedIn]</a>
+        <a href="mailto:seuemail@exemplo.com" class="btn btn-ghost">seuemail@exemplo.com</a>
+        <button id="copy-email" data-email="seuemail@exemplo.com" class="btn btn-ghost" type="button">📋 Copiar e-mail</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>— Crescendo e aprendendo.</p>
+</footer>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Typewriter hero role
+  const roles = [
+    'Ex-oficial administrativo da Marinha',
+    'Estudante de JavaScript',
+    'Em formação: Suporte de TI',
+    'Rumo a QA Analyst'
+  ];
+  const typedEl = document.getElementById('typed-role');
+  let roleIndex = 0, charIndex = 0, deleting = false;
+
+  function typeLoop(){
+    const current = roles[roleIndex];
+    if(!deleting){
+      charIndex++;
+      typedEl.textContent = current.slice(0, charIndex);
+      if(charIndex === current.length){
+        deleting = true;
+        setTimeout(typeLoop, 1800);
+        return;
+      }
+      setTimeout(typeLoop, 55);
+    } else {
+      charIndex--;
+      typedEl.textContent = current.slice(0, charIndex);
+      if(charIndex === 0){
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+      setTimeout(typeLoop, 28);
+    }
+  }
+  if(!reduceMotion){ typeLoop(); } else { typedEl.textContent = roles[0]; }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+
+  // Active nav link on scroll
+  const navLinks = document.querySelectorAll('.nav-link');
+  const trackedSections = document.querySelectorAll('main section[id]');
+  if('IntersectionObserver' in window && trackedSections.length){
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          navLinks.forEach(l => l.classList.remove('active'));
+          const link = document.querySelector('.nav-link[href="#' + entry.target.id + '"]');
+          if(link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    trackedSections.forEach(s => navObserver.observe(s));
+  }
+
+  // Verification console (signature interaction)
+  const checks = [
+    '8 anos de experiência administrativa',
+    'Certificação de Agente Marítimo',
+    'Fundamentos de Suporte de TI',
+    'Lógica de programação em JavaScript',
+    'Testes de API com Postman'
+  ];
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+  function addLine(container, text, cls){
+    const p = document.createElement('p');
+    p.className = 'line' + (cls ? ' ' + cls : '');
+    p.textContent = text;
+    container.appendChild(p);
+  }
+  async function runVerification(){
+    const btn = document.getElementById('run-check');
+    const out = document.getElementById('console-output');
+    const stamp = document.getElementById('stamp');
+    btn.disabled = true;
+    btn.textContent = 'Executando...';
+    out.innerHTML = '';
+    stamp.classList.remove('show');
+
+    addLine(out, '> iniciando verificação de sistema...', 'muted');
+    await sleep(reduceMotion ? 50 : 500);
+
+    for(const item of checks){
+      addLine(out, '[OK] ' + item, 'pass');
+      await sleep(reduceMotion ? 30 : 350);
+    }
+
+    addLine(out, '──────────────────────────────', 'muted');
+    await sleep(reduceMotion ? 30 : 250);
+    addLine(out, 'RESULTADO: ' + checks.length + '/' + checks.length + ' testes aprovados', 'result');
+    await sleep(reduceMotion ? 30 : 300);
+
+    stamp.classList.add('show');
+    btn.disabled = false;
+    btn.textContent = '▶ Executar novamente';
+  }
+  document.getElementById('run-check').addEventListener('click', runVerification);
+
+  // Copy email
+  const copyBtn = document.getElementById('copy-email');
+  copyBtn.addEventListener('click', async () => {
+    const email = copyBtn.dataset.email;
+    try{
+      await navigator.clipboard.writeText(email);
+      const original = copyBtn.textContent;
+      copyBtn.textContent = 'Copiado ✓';
+      setTimeout(() => { copyBtn.textContent = original; }, 2000);
+    }catch(e){ /* clipboard indisponível — o link mailto acima já funciona */ }
+  });
+</script>
+
+</body>
+</html>
